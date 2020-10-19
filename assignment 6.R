@@ -76,3 +76,54 @@ mean(x)
 sd(x)
 trim = function(x)sort(x)[-c(1,2,length(x)-1,length(x))]
 trim(x)
+#########################################################
+data <- read.table("blowfly.txt", header = T)
+names(data)
+str(data)
+length(data)
+unique(data$flies)
+length(unique(data$flies))
+
+
+##############################
+
+int <- 0.06 
+balance <- 10000  
+year <- 0 
+million = 1000000 
+
+while ( balance < million ) 
+ { 
+  balance <- balance + balance*int
+  balance <- balance + 10000
+  year <- year + 1
+}  
+balance
+year
+
+
+####################
+
+wf <- read.table("worldfloras.txt",header=T)
+head(wf)
+as.vector(wf$Country[grep("^.{3}c",as.character(wf$Country))])
+
+
+################################################ 
+
+area.cone.value <- function(r,v)
+{
+  h <- (3*v)/(pi*r^2)
+  area.cone <- (pi*r)*sqrt(r^2 + h^2)
+  return(area.cone)
+} 
+
+v <- 10
+r <- seq(0.1,10,0.1)
+A <- area.cone.value(r,v)
+plot (r,A,type='l')
+
+which(A==min(A))
+
+r[19]
+r[which(A==min(A))]
